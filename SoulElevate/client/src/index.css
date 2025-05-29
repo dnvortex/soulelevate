@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 47.4% 11.2%;
+    --background-lighter: 217.2 32.6% 17.5%;
+    
+    --foreground: 210 40% 98%;
+    
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 270 84% 70%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 270 79% 76%;
+    --primary-dark: 270 84% 58%;
+ 
+    --secondary: 328 73% 61%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 330 81% 68%;
+    --secondary-dark: 330 81% 52%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 187 92% 53%;
+    --accent-light: 187 92% 69%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 270 84% 70%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  /* Define the sidebar theme */
+  :root {
+    --sidebar-background: 222.2 47.4% 11.2%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 270 84% 70%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 270 84% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+/* Glass Panel Effect */
+.glass-panel {
+  @apply bg-background-lighter/70 backdrop-blur-md border border-primary/20 rounded-xl;
+}
+
+/* Gradient Border */
+.gradient-border {
+  @apply relative rounded-xl overflow-hidden;
+}
+
+.gradient-border::before {
+  content: '';
+  @apply absolute -inset-[1px] bg-gradient-to-tr from-primary via-secondary to-accent -z-10 rounded-[calc(theme(borderRadius.xl)+1px)];
+}
+
+/* Gradient Button */
+.btn-gradient {
+  @apply bg-gradient-to-r from-primary to-secondary transition-all hover:from-primary-dark hover:to-secondary-dark transform hover:-translate-y-0.5 hover:shadow-lg;
+}
+
+/* Quote Card */
+.quote-card {
+  @apply relative;
+}
+
+.quote-card::before {
+  content: "\201C";
+  font-family: theme('fontFamily.heading');
+  font-size: 3.75rem;
+  position: absolute;
+  top: -1.25rem;
+  left: -0.75rem;
+  color: theme('colors.primary.DEFAULT / 0.2');
+  z-index: 0;
+}
+
+/* Animated Gradient Background */
+.animated-gradient {
+  @apply bg-gradient-to-tr from-primary via-secondary to-accent bg-[length:400%_400%] animate-gradient;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@layer utilities {
+  .animate-gradient {
+    animation: gradient 15s ease infinite;
+  }
+}
